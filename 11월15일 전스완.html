@@ -15,7 +15,7 @@
         }
 
         body {
-            height: 1500vw;
+            height: 500vw;
         }
 
         .stage {
@@ -57,7 +57,7 @@
         }
 
         .wall-a {
-            transform: translateZ(-500w);
+            transform: translateZ(-500vw);
         }
 
         .wall-b {
@@ -258,6 +258,9 @@
                         +'</div>';
             houseElem.appendChild(this.manElem)
             this.manElem.style.left = info.xPos + '%';
+            
+            this.xPos = info.xPos;
+            this.keyState = false;
 
             //스크롤이벤트
             this.run();
@@ -267,6 +270,10 @@
             // 키다운이벤트
             this.keyevet();
             this.dir;
+
+            // 루프이벤트
+            this.speed = info.random;
+            this.runLoop;
         }
 
         People.prototype = {
@@ -298,15 +305,52 @@
             keyevet: function(){
                 const self = this;
                 window.addEventListener('keydown', (e)=>{
+                    if(self.keyState){
+                        return
+                    }
+
                     if(e.keyCode == 37){
                         self.manElem.setAttribute('data-direction', 'left');
+                        self.manElem.classList.add('running');
+                        self.keyState = true;
                         self.dir = 'left';
+                        self.loop(self);
                     }else if(e.keyCode == 39){
                         self.manElem.setAttribute('data-direction', 'right');
+                        self.manElem.classList.add('running');
+                        self.keyState = true;
                         self.dir = 'right';
+                        self.loop(self);
                     }
+                });
+                window.addEventListener('keyup', ()=>{
+                    self.manElem.classList.remove('running');
+                    self.keyState = false;
+                    cancelAnimationFrame(self.runLoop);
                 })
             },
+            loop: function(self){
+
+                if(self.xPos < -10){
+                    self.xPos = -5;
+                }else if(self.xPos > 80){
+                    self.xPos = 85;
+                }
+
+
+                if(self.dir == 'left'){
+                    self.xPos -= self.speed
+                    self.manElem.style.left = self.xPos + '%';
+                    console.log(self.xPos);
+                }if(self.dir == 'right'){
+                    self.xPos += self.speed
+                    self.manElem.style.left = self.xPos + '%';
+                }
+
+                self.runLoop = requestAnimationFrame(function(){
+                    self.loop(self);  
+                })
+            }
         }
 
 
@@ -333,13 +377,14 @@
              mousePos.x = -1 + (e.clientX / window.innerWidth) * 2;
              mousePos.y = 1 - (e.clientY / window.innerHeight) * 2;
 
-             console.log(mousePos.x);
              houseElem.style.transform = 'rotateX(' + mousePos.y * 15 + 'deg) rotateY(' + mousePos.x * 15 + 'deg)';
          })
 
         window.addEventListener('click', (e)=>{
             new People(
-                {xPos : (e.clientX / window.innerWidth)*100}
+                {xPos : (e.clientX / window.innerWidth)*100,
+                random : Math.random(),
+                }
             );
         })
 
