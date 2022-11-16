@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div id="wrap">
+        <nav class="nav">
+            <ul>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">Watch</a></li>
+            </ul>
+        </nav>
+        <div class="sec_maintext">
+            <div class="inner">
+                <div class="maintext">
+                    <h2>
+                        32.8cm<br>
+                        Liquid Retina XDR<br>
+                        디스플레이. 빼어나게, 찬란하게.
+                    </h2>
+                    <p>
+                        iPad Pro 12.9에서의 익스트림 다이내믹 레인지.4 Liquid Retina XDR 디스플레이는 1,000,000:1 명암비로 디테일 하나하나를 사실적으로
+                        표현해줍니다. 그래서 HDR 사진 및 동영상을 시청하고 편집하기에도, 최애 영화와 TV 프로그램을 감상하기에도 제격이죠. 경이로운 1000 니트의 전체 화면 밝기와 1600
+                        니트의 부분 최대 밝기를 자랑할뿐만 아니라, P3의 넓은 색영역, True Tone, ProMotion 등의 첨단 디스플레이 기술도 갖추고 있습니다. 여기에 정확한 색상
+                        처리가 필수인 워크플로에 사용할 수 있는 레퍼런스 모드까지 지원하죠.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="sec_mainMac long">
+            <div class="inner">
+                <div class="mainMac">
+                    <h2 class="mainMac-h2">
+                        M2 칩.<br>
+                        차세대 성능.
+                    </h2>
+                    <img src="./image/main_mac.jpg" alt="Mac">
+                    <p>
+                        M2 칩. 차세대 Apple Silicon, M2 칩을 소개합니다. 최대 15% 더 빠른 성능을 제공하는 8코어 CPU와 최대 35% 더 빠른 그래픽 성능을 제공하는
+                        10코어 GPU를 탑재했죠.1 여기에 40% 더 빨라진 성능으로 머신 러닝 작업을 한층 빠르게 처리해주는 Neural Engine과 50% 더 커진 메모리 대역폭까지 갖춘
+                        M2 덕분에 iPad Pro는 압도적인 성능을 내고, 강력한 신기능들을 구동합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="sec_parallax">
+            <div class="inner">
+                <div class="parallax">
+                    <h2 class="parallax-h2">
+                        32.8cm<br>
+                        Liquid Retina XDR<br>
+                    </h2>
+                    <figure class="parallax-item">
+                        <img src="./image/pallax_one.png" alt="Mac">
+                    </figure>
+                    <p class="parallax-p">
+                        놀라운 8코어 GPU가 최대 2배 더 빠른 그래픽 성능을 선사합니다. 덕분에 Procreate에서 SNS용 필터를 만들거나, uMake에서 3D로 제작하는 등 다양한 작업을
+                        할 수 있죠. 여기에 온종일 가는 배터리로 언제 어디서든 창작할 수 있습니다
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="sec_parallax2 long">
+            <div class="inner">
+                <div class="parallax2">
+                    <h2 class="parallax2-h2">
+                        32.8cm<br>
+                        Liquid Retina XDR<br>
+                    </h2>
+                    <figure class="parallax-item2">
+                        <img src="./image/pallax_two.png" alt="Mac2">
+                    </figure>
+                    <p>
+                        눈이 즐겁다. 손이 즐겁다. iPad Pro 11의 Liquid Retina 디스플레이는 빠져드는 매력과 뛰어난 휴대성뿐만 아니라 놀라운 최첨단 기술까지 갖추었습니다.4
+                        ProMotion, True Tone, P3의 넓은 색영역, 초저 반사율 덕분에 뛰어난 반응성을 자랑하는 것은 물론, 화면 위에 펼쳐지는 모든 것이 아름답게 보이죠.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="sec_ending">
+            <div class="endingfix">
+                    <div class="ending">
+                        <div class="first_text">APPLE</div>
+                        <div class="left-mask"></div>
+                        <div class="right-mask"></div>
+                        <div class="jobs"></div>
+                        <div class="last_text">
+                            <h3>APPLE</h3>
+                        </div>
+                    </div>
+            </div>
+            
+        </div>
+        <!-- <div class="sec_rolling">
+            <div class="inner">
+                <div class="rolling">
+					<div class="count_box_container">
+
+					</div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+	<!-- <script src=./js/rolling.js></script> -->
+    <script>
+        var masterState = false;
+        var wintop;
+
+        // seciont2
+        var section2 = document.querySelector('.sec_mainMac');
+        var section2Top;
+        var section2Bottom;
+
+        // section3 = parallax1 + fadeIN
+        var section3 = document.querySelector('.sec_parallax');
+        var section3Top;
+        var section3thisTop;
+        var section3percent;
+        var section3speed = 650;
+        var section3startvalue = 1000;
+        var section3Item = document.querySelector('.parallax-item');
+        var lastScroll;
+
+        // section4 = parallax2
+        var section4 = document.querySelector('.sec_parallax2');
+        var section4Top;
+        var section4thisTop;
+        var section4percent;
+        var section4speed = 850;
+        var section4startvalue = 1000;
+        var section4Item = document.querySelector('.parallax-item2');
+        var lastScroll;
+
+		var section4Bottom;
+
+		//rolling
+		var rolling = document.querySelector('.sec_rolling');
+
+        //sticky
+        var secEnding = document.querySelector('.sec_ending');
+        var secEndingHeight = secEnding.offsetHeight;
+        var secEndingRealScroll;
+        var secEndingTop;
+        var secEndingThisTop;
+        var secEndingPer;
+        // 50 ~ 0
+        var secEndStartEnd;
+        var secEndingStartvalue = 50;
+        // 1 ~ 1.5
+        var secEndScale;
+        var secEndScale2;
+        var secEndScaleStartvalue = 1;
+        
+
+        var leftMask = document.querySelector('.left-mask');
+        var rightMask = document.querySelector('.right-mask');
+        var jobs = document.querySelector('.jobs');
+ 
+
+
+        function setproperty() {
+            wintop = window.pageYOffset;
+            section2Top = section2.getBoundingClientRect().top + window.pageYOffset;
+            section2Bottom = section2Top + section2.getBoundingClientRect().height;
+
+            section3Top = section3.getBoundingClientRect().top + window.pageYOffset;
+            section3thisTop = wintop - (section3Top - 400);
+            section3percent = Math.max(section3startvalue - section3startvalue, (Math.min(section3startvalue, (section3startvalue - section3startvalue * (section3thisTop / section3speed)))));
+
+
+            section4Top = section4.getBoundingClientRect().top + window.pageYOffset;
+            section4thisTop = wintop - (section4Top - 450);
+            section4percent = Math.max(section4startvalue - section4startvalue, (Math.min(section4startvalue, (section4startvalue - section4startvalue * (section4thisTop / section4speed)))));
+
+			section4Bottom = section4Top + section4.offsetHeight;
+
+            // sticky
+            secEndingTop = secEnding.getBoundingClientRect().top + window.pageYOffset;
+            secEndingThisTop = window.pageYOffset - secEndingTop;
+            secEndingRealScroll = secEndingHeight - window.innerHeight;
+            secEndingPer = secEndingThisTop / secEndingRealScroll;
+            secEndStartEnd = Math.max(0, Math.min(50, secEndingStartvalue - (secEndingStartvalue * secEndingPer)));
+
+            //sticky scale
+
+
+            secEndScale = Math.max(0, secEndingPer);
+            secEndScale2 =  Math.min(1.5 , secEndScale+1)
+
+            
+        }
+
+        function parallax() {
+            section3Item.style.transform = 'translateX(' + section3percent + 'px) translateY(' + section3percent + 'px) rotateX(' + section3percent / 5 + 'deg) rotateY(' + section3percent / 5 + 'deg)';
+
+            section4Item.style.transform = 'translateX(' + -section4percent * 2 + 'px) translateY(' + section4percent + 'px) rotateX(' + section4percent / 3 + 'deg) rotateY(' + section4percent / 3 + 'deg)';
+        }
+
+
+
+        function sectionScroll() {
+            if (wintop >= section2Top * 1.4 && wintop < section2Bottom) {
+                clearTimeout(masterState);
+
+                if (!masterState) {
+                    masterState = true;
+                    // 마우스내리는 상황
+                    if (lastScroll < window.pageYOffset) {
+                        section3.classList.add('active');
+                        // 마우스올리는 상황
+                    } else {
+                        section3.classList.remove('active');
+                    }
+                }
+
+                masterState = setTimeout(function () {
+                    masterState = false;
+                }, 100)
+            }
+        }
+
+        function endingRander(){
+            if(secEndStartEnd <= 45){
+                document.querySelector('.first_text').classList.add('off');
+            }else{
+                document.querySelector('.first_text').classList.remove('off');
+            }
+
+            if(secEndStartEnd <= 5){
+                document.querySelector('.jobs').classList.add('off');
+                document.querySelector('.last_text').classList.add('on');
+
+            }else{
+                document.querySelector('.jobs').classList.remove('off');
+                document.querySelector('.last_text').classList.remove('on');
+            }
+
+            leftMask.style.width = secEndStartEnd + '%';
+            rightMask.style.width = secEndStartEnd + '%';
+            jobs.style.transform = 'scale(' + secEndScale2 + ')';
+
+        }
+
+
+
+        window.addEventListener('scroll', () => {
+            // 값할당
+            setproperty();
+            // section3 = parallax1 + fadeIN
+			// section4 = parallax2
+            sectionScroll();
+            parallax();
+			// ending
+            endingRander();
+
+    
+
+            lastScroll = window.pageYOffset;
+        });
+
+        function init() {
+            setproperty();
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+@charset "UTF-8";
+
+#wrap {
+    perspective: 1000px;
+}
+
+/* nav */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(56 56 56 / 50%);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+}
+
+.nav ul {
+    width: 150px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav ul li a {
+    color: #fff;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* sec_maintext */
+.sec_maintext,
+.sec_mainMac,
+.sec_parallax,
+.sec_parallax2,
+.sec_rolling {
+    background: #000;
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+}
+
+
+/* text */
+h2 {
+    color: #fff;
+    font-size: 4.5rem;
+    font-weight: bold;
+    line-height: 85px;
+    letter-spacing: -3px;
+    margin-bottom: 3rem;
+}
+
+p {
+    color: #a1a1a6;
+    font-size: 1.1rem;
+    line-height: 26px;
+}
+
+
+/* sec_mainMac */
+.mainMac {
+    text-align: center;
+}
+
+.sec_mainMac.long {
+    padding-bottom: 11rem;
+}
+
+h2.mainMach2 {
+    text-align: center;
+}
+
+/* sec_parallax */
+.sec_parallax.active .parallax .parallax-h2 {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.sec_parallax.active .parallax .parallax-p {
+    opacity: 1;
+    transform: translateX(0%);
+
+}
+
+h2.parallax-h2 {
+    opacity: 0;
+    transform: translateY(-30%);
+    transition: 1s;
+}
+
+p.parallax-p {
+    text-align: right;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: 1s;
+    transform: translateX(20%);
+}
+
+
+/* sec_parallax2 */
+
+.sec_parallax2.long {
+    padding: 11rem;
+}
+
+.parallax2 figure img {
+    width: 90%;
+}
+
+h2.parallax2-h2 {
+    margin-bottom: 4rem;
+}
+
+.parallax-item2 {
+    text-align: right;
+    padding-bottom: 4rem;
+}
+
+
+
+/* rolling */
+
+.rolling {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rolling .count_box_container {
+    display: flex;
+    justify-content: center;
+    height: 208px;
+    width: 1000px;
+	overflow:hidden;
+}
+
+.sec_rolling .rolling .count_box_container .count_box {
+	animation: count_date 2.8s 1 ease-out both;
+	animation-play-state: paused;
+}
+
+.sec_rolling .rolling .count_box_container .count_box.active{
+	animation-play-state: running;
+}
+
+
+.rolling .count_box_container .count_box span {
+    color: #fff;
+    display: block;
+    font-size: 13rem;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 7px #fff;
+}
+
+
+/* sec_ending */
+.sec_ending{
+    width: 100%;
+    height: 5000px;
+    position: relative;
+}
+
+.endingfix{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100vh;
+}
+
+.ending{
+    height: 100%;
+}
+.ending .first_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 4rem;
+    font-weight: bold;
+    z-index: 999;
+    opacity: 1;
+}
+
+.ending .last_text{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    font-size: 4rem;
+    font-weight: bold;
+    z-index: 1;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ending .last_text h3{
+    color: #000;
+}
+
+.ending .last_text.on{
+    opacity: 1;
+}
+
+.ending .first_text.off{
+    opacity: 0;
+}
+
+.ending .left-mask{
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background: #000;
+}
+.ending .right-mask{
+    height: 100%;
+    width: 50%;
+    top: 0;
+    right: 0;
+    position: absolute;
+    z-index: 99;
+    background: #000;
+}
+
+.ending .jobs{
+    position: absolute;
+    background: url(../image/jobs.png)center center / cover no-repeat;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    transition: 1s;
+    opacity: 1;
+}
+
+.ending .jobs.off{
+    opacity: 0;
+}
+
+
+
+
+
+@keyframes count_date {
+	0%{
+		transform: translateY(0px);
+	}
+	100% {
+		transform: translateY(-4992px); 
+	}
+}
