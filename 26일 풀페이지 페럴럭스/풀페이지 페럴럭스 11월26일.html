@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>고스2</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		html {
+			min-height: 100%;
+			overflow-x: hidden;
+		}
+
+		body {
+			height: 100%;
+		}
+
+		.sec_visual {
+			height: 100vh;
+			background: #000;
+			position: relative;
+			z-index: 999;
+		}
+
+		.sec_contents {
+			height: 100vh;
+			background: lightgreen;
+			position: relative;
+			z-index: 999;
+		}
+
+		.sec_banner {
+			height: 5000px;
+			background: aquamarine;
+			position: relative;
+			z-index: 999;
+		}
+
+		.fix_banner {
+			position: sticky;
+			width: 100%;
+			height: 100vh;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.fix_banner h2 {
+			margin-bottom: 2rem;
+		}
+
+		.fix_banner .parllax_list {
+			display: flex;
+		}
+
+		.fix_banner .parllax_list .parallax_item {
+			margin: 1rem;
+		}
+
+		.fix_banner .parllax_list .parallax_item img {
+			width: 150px;
+		}
+
+		.sec_footer {
+			height: 100vh;
+			position: relative;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrap">
+		<div class="sec_visual"></div>
+		<div class="sec_contents"></div>
+		<div class="sec_banner">
+			<div class="fix_banner">
+				<h2>안녕하세요</h2>
+				<ul class="parllax_list">
+					<li class="parallax_item"><img src="./image/1.jpg" alt=""></li>
+					<li class="parallax_item"><img src="./image/2.jpg" alt=""></li>
+					<li class="parallax_item"><img src="./image/3.jpg" alt=""></li>
+					<li class="parallax_item"><img src="./image/4.jpg" alt=""></li>
+				</ul>
+			</div>
+		</div>
+		<div class="sec_footer">
+			<div class="footer">
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<script>
+		var wrapElem = document.querySelector('#wrap');
+		var secVisual = document.querySelector('.sec_visual');
+		var secVisualTop;
+		var secVisualBottom;
+		var isMoveing = false;
+
+
+		// parallax
+		var realScroll;
+		var realScrollper;
+		var percent;
+
+		var parallax = document.querySelector('.sec_banner');
+		var parallaxTop;
+		var parallaxThisTop;
+		var parallaxStartValue = 500;
+		var parallaxSpeed = 3500;
+		var parallaxDistance;
+
+		var parallaxItem = document.querySelectorAll('.parllax_list .parallax_item');
+
+
+
+
+
+		function setProperty() {
+			//백분율
+			realScroll = document.body.offsetHeight - window.innerHeight;
+			realScrollper = window.pageYOffset / realScroll;
+			percent = realScrollper * 100;
+
+			secVisualTop = secVisual.getBoundingClientRect().top + window.pageYOffset;
+			secVisualBottom = secVisualTop + secVisual.offsetHeight;
+
+			// parallax
+			parallaxTop = parallax.getBoundingClientRect().top + window.pageYOffset;
+			parallaxThisTop = window.pageYOffset - parallaxTop;
+			parallaxDistance = Math.max(parallaxStartValue - parallaxStartValue, Math.min(parallaxStartValue, parallaxStartValue - parallaxStartValue * (parallaxThisTop / parallaxSpeed)));
+
+			console.log(parallaxDistance);
+
+
+		}
+
+
+		function parallaxRender() {
+			parallaxItem[0].style.transform = 'translateY(' + parallaxDistance + 'px) translateX(' + -parallaxDistance + 'px)';
+			parallaxItem[1].style.transform = 'translateY(' + parallaxDistance * 1.5 + 'px) translateX(' + parallaxDistance * 2.5 + 'px)';
+			parallaxItem[2].style.transform = 'translateY(' + parallaxDistance * 2 + 'px) translateX(' + -parallaxDistance * 2 + 'px)';
+			parallaxItem[3].style.transform = 'translateY(' + parallaxDistance * 2.5 + 'px) translateX(' + parallaxDistance * 1.5 + 'px)';
+
+		}
+
+		function animationScroll(MoveY) {
+			var vh = 0;
+			var speed = 1;
+			var scrollY = 0;
+
+			var loop = setInterval(() => {
+				var dir = MoveY > window.pageYOffset ? 1 : -1;
+				vh += speed * dir;
+				scrollY = vh + window.pageYOffset;
+
+				if (dir > 0) {
+					scrollY = Math.min(MoveY, scrollY);
+				} else {
+					scrollY = Math.max(MoveY, scrollY);
+				}
+
+				window.scrollTo(0, scrollY);
+				console.log(scrollY);
+
+				if (scrollY >= MoveY && dir > 0) {
+					clearInterval(loop);
+					isMoveing = false;
+				} else if (scrollY <= MoveY && dir < 0) {
+					clearInterval(loop);
+					isMoveing = false;
+				}
+
+			}, 10)
+		}
+
+
+		function scrollMove(e) {
+			if (window.pageYOffset > secVisualTop && window.pageYOffset < secVisualBottom) {
+				if (!isMoveing) {
+					isMoveing = true;
+					if (!wrapElem.classList.contains('active')) {
+						wrapElem.classList.add('active');
+						animationScroll(secVisualBottom);
+					} else {
+						wrapElem.classList.remove('active');
+						animationScroll(secVisualTop);
+					}
+
+				}
+
+			}
+		}
+
+
+		function getMain() {
+			setProperty();
+			scrollMove();
+			parallaxRender();
+		}
+
+		window.addEventListener('scroll', () => {
+			getMain();
+
+		});
+
+		function init() {
+			getMain();
+		}
+
+		init();
+	</script>
+</body>
+
+</html>
